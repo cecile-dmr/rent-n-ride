@@ -2,6 +2,7 @@ class Equipment < ApplicationRecord
   belongs_to :user
   has_many :reservations
   has_many :users, through: :reservations
+  has_many_attached :photos
 
   validates :name, presence: true
   validates :category, presence: true
