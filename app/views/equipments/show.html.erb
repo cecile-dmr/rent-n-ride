@@ -1,0 +1,15 @@
+<h1><%= @equipment.name %></h1>
+<p>Catégorie : <%= @equipment.category %></p>
+
+<% if @equipment.photos.attached? %>
+  <% @equipment.photos.each do |photo| %>
+    <%= image_tag photo, width: 300, height: 300 %>
+  <% end %>
+<% else %>
+  <p>Aucune image disponible</p>
+<% end %>
+
+<p>Prix : <%= number_to_currency(@equipment.price, unit: "€") %></p>
+<p>Description : <%= @equipment.description %></p>
+
+<%= link_to "Retour", equipments_path, class: "btn btn-secondary" %>
