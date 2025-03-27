@@ -1,49 +1,16 @@
 <h1>Modifier l'équipement</h1>
 
-<%= form_with model: @equipment, url: equipments_path, local: true, html: { multipart: true } do |form| %>
-  <% if @equipment.errors.any? %>
-    <div class="alert alert-danger">
-      <h4>Il y a des erreurs :</h4>
-      <ul>
-        <% @equipment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@equipment) do |f| %>
+    <%= f.input :name, label: "Nom de l'équipement" %>
 
-  <div>
-    <%= form.label :name, "Nom de l'équipement" %>
-    <%= form.text_field :name %>
-  </div>
+    <%= f.input :description, label: "Description" %>
 
-  <div>
-    <%= form.label :description, "Description" %>
-    <%= form.text_area :description %>
-  </div>
+    <%= f.select :category, ["Accessoire", "Vélo", "Ski", "Surf"], prompt: "Sélectionnez une catégorie", label: "Catégorie" %>
 
-  <div>
-    <%= form.label :category, "Catégorie" %>
-    <%= form.text_field :category %>
-  </div>
+    <%= f.input :price, label: "Prix par jour (€)" %>
 
-  <div>
-    <%= form.label :price, "Prix" %>
-    <%= form.number_field :price %>
-  </div>
+    <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Ajouter des photos"  %>
 
-  <div>
-    <%= form.label :address, "Adresse" %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.label :photos, "Photos" %>
-    <%= form.file_field :photos, multiple: true %>
-  </div>
-
-  <div>
-    <%= form.submit "Mettre à jour l'équipement" %>
-  </div>
+  <%= f.submit "Mettre à jour" %>
 <% end %>
 <%= link_to 'Retour', @equipment %>
