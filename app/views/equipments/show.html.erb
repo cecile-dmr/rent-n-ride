@@ -3,7 +3,7 @@
 
 <% if @equipment.photos.attached? %>
   <% @equipment.photos.each do |photo| %>
-    <%= image_tag photo, width: 300, height: 300 %>
+    <%= cl_image_tag photo.key, width: 300, height: 300 %>
   <% end %>
 <% else %>
   <p>Aucune image disponible</p>
@@ -14,7 +14,7 @@
 
 <% if @equipment.user == current_user %>
   <%= link_to 'Modifier', edit_equipment_path(@equipment), class: 'btn btn-warning' %>
-  <%= link_to 'Supprimer', @equipment, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet équipement ?' }, class: 'btn btn-danger' %>
+  <%= button_to 'Supprimer', @equipment, method: :delete, confirm: 'Êtes-vous sûr de vouloir supprimer cet équipement ?' , class: 'btn btn-danger' %>
 <% end %>
 
-<%= link_to "Retour", equipments_path, class: "btn btn-secondary" %>
+<%= link_to "Retour", root_path, class: "btn btn-secondary" %>

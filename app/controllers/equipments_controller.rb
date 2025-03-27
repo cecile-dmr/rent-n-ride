@@ -1,7 +1,7 @@
 class EquipmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_equipment, only: [:show, :edit, :update, :destroy]
-  before_action :check_user_permission, only: [:edit, :update, :destroy]
+  before_action :set_equipment, only: %i[show edit update destroy]
+  before_action :check_user_permission, only: %i[edit update destroy]
 
   def index
     @equipments = Equipment.all
@@ -37,15 +37,11 @@ class EquipmentsController < ApplicationController
 
   def destroy
     @equipment = Equipment.find(params[:id])
-    if @equipment.user == current_user
-      @equipment.destroy
-      redirect_to equipments_path, notice: "L'équipement a été supprimé avec succès."
-    else
-      redirect_to equipments_path, alert: "Vous ne pouvez pas supprimer cet équipement."
-    end
+    @equipment.destroy
+    redirect_to root_path, notice: "L'équipement a été supprimé avec succès."
   end
 
-private
+  private
 
   def set_equipment
     @equipment = Equipment.find(params[:id])

@@ -8,7 +8,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= equipment.name %></h5>
             <% if equipment.photos.attached? %>
-              <%= image_tag equipment.photos.first, width: 100, height: 100 %>
+              <%= cl_image_tag equipment.photos.first.key, width: 100, height: 100 %>
             <% else %>
               <p>Aucune image disponible</p>
             <% end %>

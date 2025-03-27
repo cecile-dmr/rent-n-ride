@@ -8,12 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-require "open-uri"
+require 'open-uri'
 
 puts "Suppression des anciennes réservations..."
 Reservation.destroy_all
 
 puts "Suppression des anciens équipements..."
+Equipment.all { |equipment| equipment.photos.purge }
 Equipment.destroy_all
 
 puts "Suppression des anciens utilisateurs..."
