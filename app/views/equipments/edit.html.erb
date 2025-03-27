@@ -1,4 +1,4 @@
-<h1>Ajouter un équipement</h1>
+<h1>Modifier l'équipement</h1>
 
 <%= form_with model: @equipment, url: equipments_path, local: true, html: { multipart: true } do |form| %>
   <% if @equipment.errors.any? %>
@@ -24,20 +24,26 @@
 
   <div>
     <%= form.label :category, "Catégorie" %>
-    <%= form.select :category, ["Accessoire", "Vélo", "Ski", "Surf"], prompt: "Sélectionnez une catégorie" %>
+    <%= form.text_field :category %>
   </div>
 
   <div>
-    <%= form.label :price, "Prix par jour (€)" %>
+    <%= form.label :price, "Prix" %>
     <%= form.number_field :price %>
   </div>
 
   <div>
-    <%= form.label :photos, "Ajouter des photos" %>
+    <%= form.label :address, "Adresse" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :photos, "Photos" %>
     <%= form.file_field :photos, multiple: true %>
   </div>
 
-  <%= form.submit "Créer" %>
+  <div>
+    <%= form.submit "Mettre à jour l'équipement" %>
+  </div>
 <% end %>
-
-<%= link_to "Retour", equipments_path %>
+<%= link_to 'Retour', @equipment %>
