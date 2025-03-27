@@ -12,4 +12,9 @@
 <p>Prix : <%= number_to_currency(@equipment.price, unit: "€") %></p>
 <p>Description : <%= @equipment.description %></p>
 
+<% if @equipment.user == current_user %>
+  <%= link_to 'Modifier', edit_equipment_path(@equipment), class: 'btn btn-warning' %>
+  <%= link_to 'Supprimer', @equipment, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet équipement ?' }, class: 'btn btn-danger' %>
+<% end %>
+
 <%= link_to "Retour", equipments_path, class: "btn btn-secondary" %>
