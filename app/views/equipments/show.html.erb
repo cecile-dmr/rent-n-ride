@@ -18,3 +18,19 @@
 <% end %>
 
 <%= link_to "Retour", root_path, class: "btn btn-secondary" %>
+
+<h2>Réserver cet équipement</h2>
+
+<%= form_with model: Reservation.new, url: equipment_reservations_path(@equipment), local: true, data: { controller: "flatpickr" } do |form| %>
+  <div>
+    <%= form.label :start_date, "Date de début" %>
+    <%= form.text_field :start_date, data: { flatpickr_target: "startDate" } %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, "Date de fin" %>
+    <%= form.text_field :end_date, data: { flatpickr_target: "endDate" } %>
+  </div>
+
+  <%= form.submit "Réserver", class: "btn btn-primary" %>
+<% end %>
